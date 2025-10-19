@@ -13,6 +13,8 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #define MAX_LOADSTRING 100
 #define IDM_crack 2001
 #define IDM_lnk 2002
+#define IDM_1 2003
+#define IDM_2 2004
 
 // 全局变量:
 HINSTANCE hInst;                                // 当前实例
@@ -23,8 +25,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 主窗口类名
 int screenWidth = GetSystemMetrics(SM_CXSCREEN);
 int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 // 计算窗口位置使其居中
-int windowWidth = 450;
-int windowHeight = 220;
+int windowWidth = 455;
+int windowHeight = 245;
 int posX = (screenWidth - windowWidth) / 2;
 int posY = (screenHeight - windowHeight) / 2;
 
@@ -220,11 +222,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 335, 10, 80, 67, hWnd, (HMENU)IDM_ABOUT,
                 ((LPCREATESTRUCT)lParam)->hInstance, NULL);
             SendMessage(button1, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(TRUE, 0));
-            HWND button2 = CreateWindow(L"BUTTON", L"创建免登录打开白板的桌面快捷方式(替换原快捷方式)",
-                WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON ,
-                20, 137, 395, 35, hWnd, (HMENU)IDM_lnk,
+            HWND button2 = CreateWindow(L"BUTTON", L"修改桌面快捷方式\n为免登录打开白板",
+                WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON | BS_MULTILINE/*换行样式*/,
+                20, 137, 161, 60, hWnd, (HMENU)IDM_lnk,
                 ((LPCREATESTRUCT)lParam)->hInstance, NULL);
             SendMessage(button2, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(TRUE, 0));
+            HWND button01 = CreateWindow(L"BUTTON", L"修改启动时\n显示的图片",
+                WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON | BS_MULTILINE/*换行样式*/,
+                188, 137, 110, 60, hWnd, (HMENU)IDM_1,
+                ((LPCREATESTRUCT)lParam)->hInstance, NULL);
+            SendMessage(button01, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(TRUE, 0));
+            HWND button02 = CreateWindow(L"BUTTON", L"还原启动时\n显示的图片",
+                WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON | BS_MULTILINE/*换行样式*/,
+                305, 137, 110, 60, hWnd, (HMENU)IDM_2,
+                ((LPCREATESTRUCT)lParam)->hInstance, NULL);
+            SendMessage(button02, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(TRUE, 0));
         }
     case WM_CTLCOLORSTATIC:
         {
@@ -264,6 +276,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case IDM_lnk:
                 CreateEasiNoteShortcut();
+                break;
+            case IDM_1:
+                ReplaceBannerImage();
+                break;
+            case IDM_2:
+                ReplaceBannerImageFromResource();
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);

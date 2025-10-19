@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Desktop\seewo.ico" />
+    <Image Include="..\..\..\Desktop\SplashScreen1.png" />
     <Image Include="icon1.ico" />
     <Image Include="seewo.ico" />
     <Image Include="small.ico" />
@@ -164,6 +165,7 @@
     <None Include="..\..\..\Desktop\SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
     <None Include="G:\SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
     <None Include="others1.bin" />
+    <None Include="SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

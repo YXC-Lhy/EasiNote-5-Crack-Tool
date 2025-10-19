@@ -57,6 +57,9 @@
     <Image Include="seewo.ico">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="..\..\..\Desktop\SplashScreen1.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="others1.bin">
@@ -64,5 +67,6 @@
     </None>
     <None Include="G:\SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
     <None Include="..\..\..\Desktop\SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
+    <None Include="SWCoreSharp.SWAuthorization.SWAuthClients.dll" />
   </ItemGroup>
 </Project>
