@@ -472,6 +472,7 @@ bool CopyAndReplaceFileWithReadOnly(const std::wstring& src, const std::wstring&
 // 函数：选择PNG,替换文件
 bool ReplaceBannerImage()
 {
+    int iii = 0, kkk = 0, jjj = 0;
     // 打开文件选择窗口
     wchar_t filePath[MAX_PATH] = { 0 };
     OPENFILENAMEW ofn = { 0 };
@@ -492,40 +493,76 @@ bool ReplaceBannerImage()
     std::wstring srcFile = filePath;
 
     // 方法一：当前用户 AppData 路径
+    std::wstring bannerPath;
     wchar_t appdataPath[MAX_PATH];
     if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, appdataPath)))
     {
-        std::wstring bannerPath = std::wstring(appdataPath) +
+        bannerPath = std::wstring(appdataPath) +
             L"\\Seewo\\EasiNote5\\Resources\\Banner\\Banner.png";
 
         if (fs::exists(bannerPath))
         {
             if (CopyAndReplaceFileWithReadOnly(srcFile, bannerPath))
             {
-                std::wstring msg = L"已成功替换图片：\n";
-                msg += bannerPath;
-                MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
-                return true; // 成功则直接返回
+                //std::wstring msg = L"已成功替换图片：\n";
+                //msg += bannerPath;
+                //MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
+                //return true; // 成功则直接返回
+                iii == 1;
+            }
+            else {
+                MessageBoxW(hWnd111, L"复制失败，请以管理员权限运行本工具后重试。", L"错误", MB_OK | MB_ICONERROR);
+                return false;
             }
         }
     }
 
-    // 方法二（适用旧版希沃白板5）：全局路径 path + latest
+    // 方法二：旧版全局路径 path + latest
     std::wstring splashPath = StringToWString(path) + L"\\" + StringToWString(latest) + L"\\Main\\Assets\\SplashScreen.png";
     if (fs::exists(splashPath))
     {
         if (CopyAndReplaceFileWithReadOnly(srcFile, splashPath))
         {
-            std::wstring msg = L"已成功替换旧版本希沃白板5图片：\n";
-            msg += splashPath;
-            MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
-            return true;
+            //std::wstring msg = L"已成功替换旧版本希沃白板5图片：\n";
+            //msg += splashPath;
+            //MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
+            //return true;
+            kkk = 1;
         }
     }
 
-    // 两种方法均失败
-    MessageBoxW(hWnd111, L"修改失败：未找到可替换的图片。\r\n请重新安装希沃白板5。", L"错误", MB_OK | MB_ICONERROR);
-    return false;
+    // 方法三：新版全局路径 path + latest
+    std::wstring splashPath2 = StringToWString(path) + L"\\" + StringToWString(latest) + L"\\Main\\Resources\\Startup\\SplashScreen.png";
+    if (fs::exists(splashPath2))
+    {
+        if (CopyAndReplaceFileWithReadOnly(srcFile, splashPath2))
+        {
+            jjj = 1;
+        }
+    }
+
+    if (iii == 0 and kkk == 0 and jjj == 0) {
+        // 三种方法均失败
+        MessageBoxW(hWnd111, L"修改失败：未找到可替换的图片。\r\n请重新安装希沃白板5。", L"错误", MB_OK | MB_ICONERROR);
+        return false;
+    }
+    else {
+        std::wstring msg = L"已成功替换希沃白板5启动画面图片：\r\n";
+        if (iii != 0) {
+            msg += L"\r\n";
+            msg += bannerPath;
+        }
+        if (kkk != 0) {
+            msg += L"\r\n";
+            msg += splashPath;
+        }
+        if (jjj != 0) {
+            msg += L"\r\n";
+            msg += splashPath2;
+        }
+        MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
+        return true;
+    }
 }
 
 
@@ -560,7 +597,7 @@ std::wstring ExtractPngFromResource(int resourceID, LPCWSTR resourceType)
 // 从资源中加载 PNG 并替换文件
 bool ReplaceBannerImageFromResource()
 {
-    int iiikkk = 0;
+    int iii = 0, kkk = 0, jjj = 0;
     // 从资源中提取PNG
     std::wstring srcFile = ExtractPngFromResource(IDB_PNG1, L"PNG");
     if (srcFile.empty())
@@ -570,38 +607,43 @@ bool ReplaceBannerImageFromResource()
     }
 
     // 方法一：当前用户 AppData 路径
+    std::wstring bannerPath;
     wchar_t appdataPath[MAX_PATH];
     if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, appdataPath)))
     {
         std::wstring bannerFolder = std::wstring(appdataPath) +
             L"\\Seewo\\EasiNote5\\Resources\\Banner\\";
-        std::wstring bannerPath = bannerFolder + L"Banner.png";
+        bannerPath = bannerFolder + L"Banner.png";
 
-        //如果文件夹存在则复制（无论 Banner.png 是否存在）
+        // 如果文件夹存在则复制（无论 Banner.png 是否存在）
         if (fs::exists(bannerFolder))
         {
             if (CopyAndReplaceFileWithReadOnly(srcFile, bannerPath))
             {
-                iiikkk = 1;
+                iii = 1;
                 //std::wstring msg = L"已成功还原启动图片：\n";
                 //msg += bannerPath;
                 //MessageBoxW(hWnd111, msg.c_str(), L"还原成功", MB_OK | MB_ICONINFORMATION);
                 //DeleteFileW(srcFile.c_str());// 用完后删除临时文件
                 //return true; // 成功则直接返回
             }
+            else {
+                MessageBoxW(hWnd111, L"复制失败，请以管理员权限运行本工具后重试。", L"错误", MB_OK | MB_ICONERROR);
+                return false;
+            }
         }
     }
 
-    // 方法二（适用旧版希沃白板5）：全局路径 path + latest
+    // 方法二：旧版全局路径 path + latest
     std::wstring splashFolder = StringToWString(path) + L"\\" + StringToWString(latest) + L"\\Main\\Assets\\";
     std::wstring splashPath = splashFolder + L"SplashScreen.png";
 
-    //文件夹存在即可复制
+    // 文件夹存在即可复制
     if (fs::exists(splashFolder))
     {
         if (CopyAndReplaceFileWithReadOnly(srcFile, splashPath))
         {
-            iiikkk = 1;
+            kkk = 1;
             //std::wstring msg = L"已成功还原旧版本希沃白板5启动图片：\n";
             //msg += splashPath;
             //MessageBoxW(hWnd111, msg.c_str(), L"还原成功", MB_OK | MB_ICONINFORMATION);
@@ -610,17 +652,41 @@ bool ReplaceBannerImageFromResource()
         }
     }
 
-    if (iiikkk == 1) {
-        std::wstring msg = L"已成功还原启动图片。\n";
-        //msg += bannerPath;
-        MessageBoxW(hWnd111, msg.c_str(), L"还原成功", MB_OK | MB_ICONINFORMATION);
-        DeleteFileW(srcFile.c_str());// 用完后删除临时文件
-        return true; // 成功则直接返回
+    // 方法三：新版全局路径 path + latest
+    std::wstring splashFolder2 = StringToWString(path) + L"\\" + StringToWString(latest) + L"\\Main\\Resources\\Startup\\";
+    std::wstring splashPath2 = splashFolder2 + L"SplashScreen.png";
+
+    // 文件夹存在即可复制
+    if (fs::exists(splashFolder2))
+    {
+        if (CopyAndReplaceFileWithReadOnly(srcFile, splashPath2))
+        {
+            jjj = 1;
+        }
     }
 
-    // 两种方法均失败
-    MessageBoxW(hWnd111, L"还原失败：未找到可替换的图片。\r\n请重新安装希沃白板5。", L"错误", MB_OK | MB_ICONERROR);
-    // 用完后删除临时文件
-    DeleteFileW(srcFile.c_str());
-    return false;
+    if (iii == 0 and kkk == 0) {
+        // 两种方法均失败
+        MessageBoxW(hWnd111, L"还原失败：未找到可替换的图片。\r\n请重新安装希沃白板5。", L"错误", MB_OK | MB_ICONERROR);
+        DeleteFileW(srcFile.c_str());// 用完后删除临时文件
+        return false;
+    }
+    else {
+        std::wstring msg = L"已成功还原希沃白板5启动画面图片：";
+        if (iii != 0) {
+            msg += L"\r\n";
+            msg += bannerPath;
+        }
+        if (kkk != 0) {
+            msg += L"\r\n";
+            msg += splashPath;
+        }
+        if (jjj != 0) {
+            msg += L"\r\n";
+            msg += splashPath2;
+        }
+        MessageBoxW(hWnd111, msg.c_str(), L"还原成功", MB_OK | MB_ICONINFORMATION);
+        DeleteFileW(srcFile.c_str());// 用完后删除临时文件
+        return true;
+    }
 }
