@@ -151,17 +151,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         {
+            HDC hdc = GetDC(NULL); // 获取整个屏幕的设备上下文
+            int dpi = GetDeviceCaps(hdc, LOGPIXELSY);
             // 定义字体属性
             LOGFONT lf;
             ZeroMemory(&lf, sizeof(LOGFONT));
             lstrcpy(lf.lfFaceName, L"Microsoft YaHei"); // 设置字体名称
+            lf.lfHeight = -MulDiv(12, GetDeviceCaps(hdc, LOGPIXELSY), 72); // 设置字体大小  点
             //lf.lfHeight = -MulDiv(12, GetDeviceCaps(hdc, LOGPIXELSY), 72); // 设置字体大小12点
             lf.lfWeight = FW_NORMAL; // 设置字体粗细
             // 创建字体
             HFONT hFont = CreateFontIndirect(&lf);
 
-            HDC hdc = GetDC(NULL); // 获取整个屏幕的设备上下文
-            int dpi = GetDeviceCaps(hdc, LOGPIXELSY);
+            
             // 定义字体属性
             LOGFONT lf2;
             ZeroMemory(&lf2, sizeof(LOGFONT));
