@@ -119,7 +119,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    //HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       //CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
    HWND hWnd = CreateWindowEx(
-       NULL, szWindowClass, L"希沃白板5激活工具 v1.1.1",
+       NULL, szWindowClass, L"希沃白板5激活工具 v1.1.2",
        WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME & ~WS_MAXIMIZEBOX ,
        posX, posY, windowWidth, windowHeight, nullptr, nullptr, hInstance, nullptr);
 

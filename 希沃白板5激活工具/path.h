@@ -665,8 +665,8 @@ bool ReplaceBannerImageFromResource()
         }
     }
 
-    if (iii == 0 and kkk == 0) {
-        // 两种方法均失败
+    if (iii == 0 and kkk == 0 and jjj == 0) {
+        // 三种方法均失败
         MessageBoxW(hWnd111, L"还原失败：未找到可替换的图片。\r\n请重新安装希沃白板5。", L"错误", MB_OK | MB_ICONERROR);
         DeleteFileW(srcFile.c_str());// 用完后删除临时文件
         return false;
