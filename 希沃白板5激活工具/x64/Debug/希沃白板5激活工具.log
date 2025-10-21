@@ -1,0 +1,42 @@
+﻿  希沃白板5激活工具.cpp
+D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(511,21): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
+D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\希沃白板5激活工具.cpp(248,54): warning C4311: “类型强制转换”: 从“HGDIOBJ”到“LONG”的指针截断
+D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\希沃白板5激活工具.cpp(248,54): warning C4302: “类型强制转换”: 从“HGDIOBJ”到“LONG”截断
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2541,23): warning C4244: “参数”: 从“wchar_t”转换到“const _Elem”，可能丢失数据
+          with
+          [
+              _Elem=char
+          ]
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : 查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(_Iter,const _Iter,std::input_iterator_tag)”的引用
+          with
+          [
+              _Iter=wchar_t *
+          ]
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2552): message : 查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(_Iter,const _Iter,std::input_iterator_tag)”的引用
+          with
+          [
+              _Iter=wchar_t *
+          ]
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : 查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(const _Iter,const _Iter,std::forward_iterator_tag)”的引用
+          with
+          [
+              _Iter=wchar_t *
+          ]
+D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2532): message : 查看对正在编译的函数 模板 实例化“void std::basic_string<char,std::char_traits<char>,std::allocator<char>>::_Construct<_Iter>(const _Iter,const _Iter,std::forward_iterator_tag)”的引用
+          with
+          [
+              _Iter=wchar_t *
+          ]
+D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
+          with
+          [
+              _Iter=wchar_t *,
+              _Alloc=std::allocator<char>
+          ]
+  希沃白板5激活工具.vcxproj -> D:\Users\User\Desktop\希沃白板5激活工具\x64\Debug\希沃白板5激活工具.exe

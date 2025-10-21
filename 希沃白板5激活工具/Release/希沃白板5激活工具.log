@@ -1,5 +1,4 @@
 ﻿  希沃白板5激活工具.cpp
-D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(511,21): warning C4553: “==”: 未使用表达式结果；是否打算使用“=”?
 D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xstring(2541,23): warning C4244: “参数”: 从“wchar_t”转换到“const _Elem”，可能丢失数据
           with
           [
@@ -25,20 +24,21 @@ D:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Iter=wchar_t *
           ]
-D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
+D:\Users\admin\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
           with
           [
               _Iter=wchar_t *,
               _Alloc=std::allocator<char>
           ]
-D:\Users\User\Desktop\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
+D:\Users\admin\希沃白板5激活工具\希沃白板5激活工具\path.h(33): message : 查看对正在编译的函数 模板 实例化“std::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<wchar_t*,0>(_Iter,_Iter,const _Alloc &)”的引用
           with
           [
               _Iter=wchar_t *,
               _Alloc=std::allocator<char>
           ]
   正在生成代码
-  Previous IPDB not found, fall back to full compilation.
-  All 1329 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 1355 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
-  希沃白板5激活工具.vcxproj -> D:\Users\User\Desktop\希沃白板5激活工具\Release\希沃白板5激活工具.exe
+  希沃白板5激活工具.vcxproj -> D:\Users\admin\希沃白板5激活工具\Release\希沃白板5激活工具.exe

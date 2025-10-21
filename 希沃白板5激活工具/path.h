@@ -497,18 +497,22 @@ bool ReplaceBannerImage()
     wchar_t appdataPath[MAX_PATH];
     if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, appdataPath)))
     {
-        bannerPath = std::wstring(appdataPath) +
-            L"\\Seewo\\EasiNote5\\Resources\\Banner\\Banner.png";
+        std::wstring bannerFolder = std::wstring(appdataPath) +
+            L"\\Seewo\\EasiNote5\\Resources\\";
+        bannerPath = bannerFolder + L"Banner\\Banner.png";
 
-        if (fs::exists(bannerPath))
+        // 如果Resources文件夹存在则复制（无论 Banner.png 是否存在）
+        if (fs::exists(bannerFolder))
         {
+            std::wstring bannerFolder111 = bannerFolder + L"Banner";
+            fs::create_directories(bannerFolder111);//创建文件夹
             if (CopyAndReplaceFileWithReadOnly(srcFile, bannerPath))
             {
                 //std::wstring msg = L"已成功替换图片：\n";
                 //msg += bannerPath;
                 //MessageBoxW(hWnd111, msg.c_str(), L"修改成功", MB_OK | MB_ICONINFORMATION);
                 //return true; // 成功则直接返回
-                iii == 1;
+                iii = 1;
             }
             else {
                 MessageBoxW(hWnd111, L"复制失败，请以管理员权限运行本工具后重试。", L"错误", MB_OK | MB_ICONERROR);
@@ -547,7 +551,7 @@ bool ReplaceBannerImage()
         return false;
     }
     else {
-        std::wstring msg = L"已成功替换希沃白板5启动画面图片：\r\n";
+        std::wstring msg = L"已成功替换希沃白板5启动画面图片：";
         if (iii != 0) {
             msg += L"\r\n";
             msg += bannerPath;
@@ -612,12 +616,14 @@ bool ReplaceBannerImageFromResource()
     if (SUCCEEDED(SHGetFolderPathW(NULL, CSIDL_APPDATA, NULL, 0, appdataPath)))
     {
         std::wstring bannerFolder = std::wstring(appdataPath) +
-            L"\\Seewo\\EasiNote5\\Resources\\Banner\\";
-        bannerPath = bannerFolder + L"Banner.png";
+            L"\\Seewo\\EasiNote5\\Resources\\";
+        bannerPath = bannerFolder + L"Banner\\Banner.png";
 
         // 如果文件夹存在则复制（无论 Banner.png 是否存在）
         if (fs::exists(bannerFolder))
         {
+            std::wstring bannerFolder111 = bannerFolder + L"Banner";
+            fs::create_directories(bannerFolder111);//创建文件夹
             if (CopyAndReplaceFileWithReadOnly(srcFile, bannerPath))
             {
                 iii = 1;
